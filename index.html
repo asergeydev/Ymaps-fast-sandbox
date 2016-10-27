@@ -1,0 +1,40 @@
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+
+<style>
+#map{
+    width: 100%;
+    height: 400px;
+    border: 1px solid lightgray;
+}
+</style>
+
+<div id="map"></div>
+
+<script>
+ymaps.ready(function () {
+    var myMap = new ymaps.Map('map', {
+            center: [55.719471, 37.632643],
+            zoom: 16,
+			 controls: ['zoomControl']
+        }, {
+            searchControlProvider: 'yandex#search'
+        }),
+        myPlacemark = new ymaps.Placemark(myMap.getCenter(), {
+            hintContent: 'г. Москва, 3-й Павловский переулок, д.1, офисный центр "Винсел", офис 30',
+            balloonContent: 'г. Москва, 3-й Павловский переулок, д.1, офисный центр "Винсел", офис 30',
+        }, {
+            // Опции.
+            // Необходимо указать данный тип макета.
+            iconLayout: 'default#image',
+            // Своё изображение иконки метки.
+            iconImageHref: 'http://stava.ru/templates/protostar/baloon.png',
+            // Размеры метки.
+            iconImageSize: [30, 42],
+            // Смещение левого верхнего угла иконки относительно
+            // её "ножки" (точки привязки).
+            iconImageOffset: [-3, -42]
+        });
+
+    myMap.geoObjects.add(myPlacemark);
+});
+</script>
